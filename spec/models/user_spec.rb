@@ -50,4 +50,21 @@ RSpec.describe User, type: :model do
     user.save
     expect(duplicate_user).to_not be_valid
   end
+
+  it 'emailは小文字でDB登録されていること' do
+    mixed_case_email = 'Foo@ExAMPle.CoM'
+    user.email = mixed_case_email
+    user.save
+    expect(user.reload.email).to eq mixed_case_email.downcase
+  end
+
+  it 'passwordが必須であること' do
+    user.password = user.password_confirmation = ' ' * 6
+    expect(user).to_not be_valid
+  end
+
+  it 'passwordは6文字以上であること' do
+    user.password = user.password_confirmation = 'a' * 5
+    expect(user).to_not be_valid
+  end
 end
