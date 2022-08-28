@@ -7,7 +7,8 @@
     1. `from google.cloud import vision`で，visionをimport
     1. `client = vision.ImageAnnotatorClient()`
     1. PIL形式の画像を`f.read`で読み込み
-    1. ```python:gcvision.py
+    1. コード内で関数を作る
+    ```python:gcvision.py
     image = vision.Image(content=content)
 
     response = client.document_text_detection(
