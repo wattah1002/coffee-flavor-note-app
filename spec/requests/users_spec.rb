@@ -13,4 +13,15 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include "Sign up"
     end
   end
+
+  describe 'POST /users #create' do
+    it '無効な値だと登録されないこと' do
+      expect {
+        post users_path, params: { user: { name: '',
+                                           email: 'user@invalid',
+                                           password: 'foo',
+                                           password_confirmation: 'bar' } }
+        }.to_not change(User, :count)
+    end
+  end
 end
