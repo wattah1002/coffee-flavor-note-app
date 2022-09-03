@@ -41,6 +41,11 @@ RSpec.describe "Users", type: :request do
         user = User.last
         expect(response).to redirect_to user
       end
+
+      it 'flash が表示されること' do
+        post users_path, params: user_params
+        expect(flash).to be_any
+      end
     end
   end
 end
