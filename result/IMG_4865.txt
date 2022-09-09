@@ -1,0 +1,14 @@
+CHELBESA
+チェルベッサ
+Country:Ethiopia
+Region:Gedeo
+Procucers:476members
+WashingStation:Chelbesa
+WashingStation
+Process:Washed
+Varieties:Welisho,Dega
+Altitude:2100masl
+Picked:2021
+Cranberrycandy,Citrusnote,PurpleGrape,Blacktea.
+クランベリーキャンディー、柑橘、紫葡萄、ブラックティー
+fuglencoffee.jp

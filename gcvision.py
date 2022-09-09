@@ -1,17 +1,12 @@
 import io
 import os
-import argparse
+import glob
 
 from google.cloud import vision
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--filename', type=str, default='test1')
-opts = parser.parse_args()
 
-
-
-def save_txt(txt):
-    name = opts.filename + '.txt'
+def save_txt(txt, name):
+    name = name + '.txt'
     result_dir = os.path.join('result')
     result_file = os.path.abspath(os.path.join(result_dir, name))
 
@@ -21,11 +16,8 @@ def save_txt(txt):
     
 
 
-def main():
+def output(file_name):
     client = vision.ImageAnnotatorClient()
-
-    rel_path = '../data/' + opts.filename + '.png'
-    file_name = os.path.abspath(rel_path)
 
     with open(file_name, 'rb') as f:
         content = f.read()
@@ -47,7 +39,16 @@ def main():
                     ])
                 output_text += '\n'
     print(output_text)
-    save_txt(output_text)
+    output_name = os.path.splitext(os.path.basename(file_name))[0]
+    save_txt(output_text, output_name)
+    print('Converted: ', output_name)
+
+def main():
+    rel_path = '../data/'
+    datapath = os.path.abspath(rel_path)    
+    imgs = glob.glob(datapath + '/*.png')
+    for img in imgs:
+        output(img)
 
 if __name__ == '__main__':
     main()
